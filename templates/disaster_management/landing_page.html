@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-gradient-to-b from-blue-900 to-blue-700 min-h-screen">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="text-center">
+            <h1 class="text-5xl font-bold text-white mb-4">Municipal Disaster Risk Reduction Management Office</h1>
+            <p class="text-xl text-blue-100 mb-8">Ensuring community safety through preparedness and rapid response</p>
+            <div class="flex justify-center gap-4">
+                <a href="#" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    Report Emergency
+                </a>
+                <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center">
+                    <i class="fas fa-bell mr-2"></i>
+                    View Alerts
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Emergency Response -->
+                <div class="bg-blue-50 p-6 rounded-lg text-center hover:shadow-lg transition">
+                    <i class="fas fa-ambulance text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Emergency Response</h3>
+                    <p class="text-gray-600">24/7 emergency response team ready to assist during disasters</p>
+                </div>
+                
+                <!-- Evacuation Centers -->
+                <div class="bg-blue-50 p-6 rounded-lg text-center hover:shadow-lg transition">
+                    <i class="fas fa-house-damage text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Evacuation Centers</h3>
+                    <p class="text-gray-600">Safe and well-equipped evacuation facilities</p>
+                </div>
+                
+                <!-- Relief Distribution -->
+                <div class="bg-blue-50 p-6 rounded-lg text-center hover:shadow-lg transition">
+                    <i class="fas fa-box-open text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Relief Distribution</h3>
+                    <p class="text-gray-600">Organized distribution of relief goods to affected areas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Impact Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {% for stat in disaster_statistics %}
+                <div class="bg-white p-6 rounded-lg text-center">
+                    <p class="text-4xl font-bold text-blue-600">{{ stat.occurrences }}</p>
+                    <p class="text-gray-600">{{ stat.disaster_type }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-800 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Be a Volunteer</h2>
+            <p class="text-blue-100 mb-8">Join our team and help make a difference in our community</p>
+            <a href="#" class="bg-white text-blue-800 font-bold py-3 px-8 rounded-lg hover:bg-blue-100 transition">
+                Sign Up Now
+            </a>
+        </div>
+    </div>
+
+    <!-- Emergency Contacts -->
+    <div class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Emergency Contacts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for resource in emergency_resources %}
+                {% if resource.resource_type == 'Contact' %}
+                <div class="bg-red-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">{{ resource.title }}</h3>
+                    <p class="text-gray-600">{{ resource.content }}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
